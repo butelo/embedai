@@ -1,0 +1,6 @@
+/target/
+/embedai
+/embedai-*
+.env
+.env.*
+*.log

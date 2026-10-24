@@ -1,0 +1,24 @@
+[package]
+name = "embedai"
+version = "0.1.0"
+edition = "2024"
+description = "A source-first recipe for tiny, disposable terminal agent harnesses"
+license = "MIT"
+repository = "https://github.com/butelo/embedai"
+homepage = "https://github.com/butelo/embedai"
+keywords = ["agent", "llm", "cli", "embedded", "harness"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+anyhow = "1.0"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+wait-timeout = "0.2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"
+panic = "abort"
+strip = true
