@@ -186,7 +186,7 @@ Configuration precedence is:
 | `list_dir` | List directory entries |
 | `ping` | Use the system's `ping` executable |
 
-There are deliberately no tool approval prompts. Commands have a 30-second default timeout, tool output is bounded, and the model loop stops after 24 turns by default. These limits reduce accidents; they do **not** provide a security boundary.
+There are deliberately no tool approval prompts. Commands have a 30-second default timeout, tool output is bounded, and the model loop stops after 200 turns by default (override with `EMBEDAI_MAX_TURNS`, up to 1000). These limits reduce accidents; they do **not** provide a security boundary.
 
 ## Make it yours
 
