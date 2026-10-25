@@ -45,12 +45,12 @@ impl Config {
                 let turns = value
                     .parse::<usize>()
                     .with_context(|| format!("invalid EMBEDAI_MAX_TURNS: {value}"))?;
-                if turns == 0 || turns > 100 {
-                    bail!("EMBEDAI_MAX_TURNS must be between 1 and 100");
+                if turns == 0 || turns > 1000 {
+                    bail!("EMBEDAI_MAX_TURNS must be between 1 and 1000");
                 }
                 turns
             }
-            Err(std::env::VarError::NotPresent) => 24,
+            Err(std::env::VarError::NotPresent) => 200,
             Err(error) => return Err(error).context("invalid EMBEDAI_MAX_TURNS"),
         };
 
