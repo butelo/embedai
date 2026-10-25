@@ -8,6 +8,8 @@ The project is intentionally small enough to read and modify. It implements the 
 
 [Landing page](https://butelo.github.io/embedai/) · [Design philosophy](docs/PHILOSOPHY.md) · [Security guidance](SECURITY.md)
 
+> Yes — that landing page was written by an embedai agent. Small doesn't mean incapable.
+
 ## Philosophy
 
 **The source is the product—not the binary.**
