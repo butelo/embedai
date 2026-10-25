@@ -6,6 +6,8 @@
 
 The project is intentionally small enough to read and modify. It implements the OpenAI-compatible [Responses API](https://platform.openai.com/docs/api-reference/responses) tool-calling loop described in [You Should Write An Agent](https://fly.io/blog/everyone-write-an-agent/): send context, execute returned function calls, append their outputs, and repeat until the model answers.
 
+[Landing page](https://butelo.github.io/embedai/) · [Design philosophy](docs/PHILOSOPHY.md) · [Security guidance](SECURITY.md)
+
 ## Philosophy
 
 **The source is the product—not the binary.**
