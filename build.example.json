@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://api.openai.com/v1",
+  "api_key": "sk-your-short-lived-key",
+  "model": "gpt-5-mini",
+  "target": "aarch64-unknown-linux-musl",
+  "podman": true,
+  "output": "embedai-linux-arm64"
+}

@@ -39,7 +39,7 @@ Read [the design philosophy](docs/PHILOSOPHY.md) and [security guidance](SECURIT
 
 ## Quick start
 
-Requirements for a native build: a current stable Rust toolchain. For containerized cross-compilation, use Docker **or** Podman instead.
+Requirements for a native build: a current stable Rust toolchain. For containerized cross-compilation, use Docker **or** Podman instead. Using a JSON build config also requires [`jq`](https://jqlang.org/).
 
 ```sh
 git clone https://github.com/butelo/embedai.git
@@ -56,7 +56,38 @@ cd embedai
 
 The executable has the endpoint, API key, and model embedded. It does not need those environment variables when it runs.
 
-> **Use a disposable key.** Command-line arguments can appear in shell history and process listings, and embedded keys can be recovered from binaries. See [SECURITY.md](SECURITY.md).
+### Build from a config file
+
+Pass JSON with `--config` instead of putting every value on the command line. Config files are parsed with `jq`; normal builds without `--config` do not need it.
+
+```sh
+cp build.example.json build.json
+# Edit build.json, then run:
+./build.sh --config build.json
+```
+
+```json
+{
+  "endpoint": "https://api.openai.com/v1",
+  "api_key": "sk-your-short-lived-key",
+  "model": "gpt-5-mini",
+  "target": "aarch64-unknown-linux-musl",
+  "podman": true,
+  "output": "embedai-linux-arm64"
+}
+```
+
+The supported keys are `endpoint`, `api_key`, `model`, `target`, `output`, `docker`, and `podman`. The first three are required. `target` and `output` are optional. Container options are optional booleans; do not set both to `true`.
+
+Command-line options override config values, so you can reuse a file while changing a setting:
+
+```sh
+./build.sh --config build.json --model another-model --output embedai-test
+```
+
+The default `build.json` filename is git-ignored. Keep config files private if you use another filename.
+
+> **Use a disposable key.** Command-line arguments can appear in shell history and process listings, and embedded keys can be recovered from binaries. Config files avoid putting the key in build command arguments, but still store it in plaintext. See [SECURITY.md](SECURITY.md).
 
 ## Cross-compile: build here, run there
 

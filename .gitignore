@@ -3,4 +3,5 @@
 /embedai-*
 .env
 .env.*
+/build.json
 *.log

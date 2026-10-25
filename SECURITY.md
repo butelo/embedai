@@ -22,7 +22,9 @@ Prefer a low-privilege account, a narrow tool set, and a disposable machine or c
 
 ## Command-line and build exposure
 
-`build.sh --api-key ...` is convenient but arguments may appear in shell history and process listings. Container builds additionally pass the value into the build environment. Use only a disposable key and clear relevant history entries when appropriate.
+`build.sh --api-key ...` is convenient but arguments may appear in shell history and process listings. `build.sh --config ...` keeps the key out of build command arguments, but JSON config files store it in plaintext. Restrict their permissions (for example, `chmod 600 build.json`), do not commit them, and remove them when no longer needed. The default `build.json` filename is git-ignored; custom filenames are not automatically protected.
+
+Container builds additionally pass the value into the build environment. Use only a disposable key and clear relevant history entries when appropriate.
 
 Keep build directories private: release artifacts, dependency artifacts, and copied executables may contain the embedded key. `cargo clean` removes this project's build artifacts; it does not erase backups, filesystem snapshots, shell history, or copies made elsewhere.
 
